@@ -38,4 +38,5 @@ public class EventDto {
 
     private LocalDateTime updatedOn;
 
+    private Club club;
 }
