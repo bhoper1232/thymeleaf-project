@@ -4,7 +4,6 @@ import com.application.web.dto.ClubDto;
 import com.application.web.models.Club;
 import com.application.web.service.ClubService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +14,7 @@ import java.util.List;
 @Controller
 public class ClubController {
 
-    private ClubService clubService;
+    private final ClubService clubService;
 
     public ClubController(ClubService clubService) {
         this.clubService = clubService;
