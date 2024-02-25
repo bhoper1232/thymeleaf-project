@@ -1,6 +1,5 @@
 package com.application.web.controller;
 
-import com.application.web.dto.ClubDto;
 import com.application.web.dto.EventDto;
 import com.application.web.models.Event;
 import com.application.web.service.EventService;
@@ -18,7 +17,7 @@ import java.util.List;
 @Controller
 public class EventController {
 
-    private EventService eventService;
+    private final EventService eventService;
 
     public EventController(EventService eventService) {
         this.eventService = eventService;
@@ -35,7 +34,7 @@ public class EventController {
     }
 
     @PostMapping("/events/{clubId}")
-    public String createEvent(@PathVariable("clubId") Long clubId, @ModelAttribute("event") EventDto eventDto, Model Model) {
+    public String createEvent(@PathVariable("clubId") Long clubId, @ModelAttribute("event") EventDto eventDto) {
         eventService.createEvent(clubId, eventDto);
 
         return "redirect:/clubs/" + clubId;
@@ -80,4 +79,10 @@ public class EventController {
         return "redirect:/events";
     }
 
+    @GetMapping("/events/{eventId}/delete")
+    public String deleteEvent(@PathVariable("eventId") long eventId) {
+        eventService.deleteEvent(eventId);
+
+        return "redirect:/events";
+    }
 }
